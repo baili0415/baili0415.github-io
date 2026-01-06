@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任丽瑾的个人主页</title>
+    <style>
+        /* 全局重置与基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: "Inter", "微软雅黑", "Microsoft YaHei", sans-serif;
+            background-color: #f7f9fc;
+            color: #2d3748;
+            line-height: 1.8;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-image:
+                    radial-gradient(circle at 10% 20%, rgba(72, 187, 120, 0.05) 0%, transparent 20%),
+                    radial-gradient(circle at 90% 80%, rgba(56, 178, 172, 0.05) 0%, transparent 20%);
+        }
+
+        /* 页面头部 - 高级渐变+动态效果 */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #48bb78 0%, #38b2ac 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 12px 32px rgba(72, 187, 120, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='white' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .avatar-container {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.9);
+            object-fit: cover;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transition: all 0.5s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+        }
+
+        .avatar-border {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px dashed rgba(255, 255, 255, 0.6);
+            animation: rotate 15s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 20px 0 10px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-subtitle {
+            font-size: 19px;
+            opacity: 0.95;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-subtitle::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+
+        /* 内容区块样式 - 卡片升级 */
+        .section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(72, 187, 120, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #48bb78, #38b2ac);
+            border-radius: 3px 0 0 3px;
+        }
+
+        .section:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(72, 187, 120, 0.12);
+            border-color: rgba(72, 187, 120, 0.15);
+        }
+
+        h2 {
+            font-size: 26px;
+            color: #2d3748;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f5f0;
+            display: inline-block;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #48bb78, #38b2ac);
+            border-radius: 2px;
+        }
+
+        /* 关于我样式优化 */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1 1 60%;
+        }
+
+        .about-highlights {
+            flex: 1 1 30%;
+            background-color: #f8faf8;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(72, 187, 120, 0.1);
+        }
+
+        .about p {
+            font-size: 17px;
+            margin-bottom: 18px;
+            text-indent: 2em;
+            color: #4a5568;
+            line-height: 1.9;
+        }
+
+        .motto {
+            font-style: italic;
+            color: #38b2ac;
+            font-weight: 600;
+            display: block;
+            text-align: center;
+            margin: 25px 0;
+            font-size: 20px;
+            padding: 15px;
+            background-color: rgba(56, 178, 172, 0.08);
+            border-radius: 8px;
+            border-left: 4px solid #38b2ac;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: #4a5568;
+        }
+
+        .highlight-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #48bb78;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        /* 列表样式 - 高级自定义 */
+        .skill-list, .plan-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-list li, .plan-list li {
+            padding: 15px 0 15px 40px;
+            position: relative;
+            border-bottom: 1px solid #f0f5f0;
+            font-size: 17px;
+            color: #4a5568;
+        }
+
+        .skill-list li:last-child, .plan-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li::before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 16px;
+            font-size: 20px;
+            background-color: rgba(72, 187, 120, 0.1);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plan-list li::before {
+            content: "";
+            width: 14px;
+            height: 14px;
+            background-color: #38b2ac;
+            border-radius: 50%;
+            position: absolute;
+            left: 8px;
+            top: 22px;
+            box-shadow: 0 0 0 4px rgba(56, 178, 172, 0.15);
+        }
+
+        .plan-list li::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 2px;
+            height: calc(100% - 30px);
+            background-color: rgba(56, 178, 172, 0.2);
+        }
+
+        .plan-list li:last-child::after {
+            display: none;
+        }
+
+        /* 网站链接 - 卡片式升级 */
+        .website-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .website-card {
+            flex: 1 1 calc(33.333% - 20px);
+            min-width: 220px;
+            background-color: #f8faf8;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(72, 187, 120, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .website-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: linear-gradient(135deg, #f8faf8 0%, #f0f8f0 100%);
+            box-shadow: 0 8px 20px rgba(72, 187, 120, 0.1);
+            border-color: rgba(72, 187, 120, 0.2);
+        }
+
+        .website-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(72, 187, 120, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: #48bb78;
+            font-size: 24px;
+        }
+
+        .website-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .website-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .website-desc {
+            font-size: 15px;
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        /* 表格样式 - 高级质感 */
+        .contact-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .contact-table th, .contact-table td {
+            padding: 18px 25px;
+            text-align: left;
+        }
+
+        .contact-table th {
+            background: linear-gradient(to right, #48bb78, #38b2ac);
+            color: white;
+            font-weight: 600;
+            font-size: 17px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-table td {
+            background-color: white;
+            font-size: 16px;
+            color: #4a5568;
+            border-bottom: 1px solid #f0f5f0;
+        }
+
+        .contact-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .contact-table tr:hover td {
+            background-color: #f8faf8;
+            transform: translateX(3px);
+        }
+
+        .contact-table tr td:first-child {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        /* 表单样式 - 高级交互 */
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2d3748;
+            font-weight: 500;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+        }
+
+        label::after {
+            content: "*";
+            color: #48bb78;
+            margin-left: 5px;
+            font-size: 18px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 17px;
+            color: #2d3748;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #38b2ac;
+            box-shadow: 0 0 0 4px rgba(56, 178, 172, 0.12);
+            background-color: white;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        textarea::placeholder {
+            color: #a0aec0;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.8;
+            padding-top: 18px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #48bb78 0%, #38b2ac 100%);
+            color: white;
+            border: none;
+            padding: 16px 35px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 16px rgba(72, 187, 120, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(72, 187, 120, 0.25);
+            background: linear-gradient(135deg, #3fa769 0%, #2d9791 100%);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.2);
+        }
+
+        .submit-icon {
+            font-size: 20px;
+        }
+
+        /* 页脚样式 - 高级质感 */
+        .footer {
+            text-align: center;
+            margin-top: 70px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 16px;
+            color: #718096;
+            font-size: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(72, 187, 120, 0.08);
+        }
+
+        .footer-copyright {
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #4a5568;
+            font-size: 16px;
+        }
+
+        .footer-update {
+            opacity: 0.8;
+        }
+
+        /* 响应式优化 - 多断点适配 */
+        @media (max-width: 992px) {
+            .website-card {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 15px;
+            }
+
+            .avatar {
+                width: 140px;
+                height: 140px;
+                border-width: 4px;
+            }
+
+            .avatar-border {
+                width: 140px;
+                height: 140px;
+                border-width: 4px;
+            }
+
+            h1 {
+                font-size: 28px;
+                letter-spacing: 2px;
+            }
+
+            .header-subtitle {
+                font-size: 17px;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .about-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .about-text, .about-highlights {
+                flex: 1 1 100%;
+            }
+
+            .website-card {
+                flex: 1 1 100%;
+            }
+
+            .contact-table th, .contact-table td {
+                padding: 15px 20px;
+            }
+
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 25px 15px;
+            }
+
+            .section {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .motto {
+                font-size: 18px;
+                padding: 12px;
+            }
+
+            .skill-list li, .plan-list li {
+                padding-left: 30px;
+                font-size: 16px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                padding: 14px 16px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- 页面头部 - 新增动态头像边框 -->
+<header class="header">
+    <div class="avatar-container">
+        <img src="C:\Users\29124\Desktop\头像).jpg" alt="任丽瑾的头像" class="avatar">
+        <div class="avatar-border"></div>
+    </div>
+    <h1>任丽瑾的个人主页</h1>
+    <p class="header-subtitle">数据科学与大数据技术专业 · 持续学习 · 探索数据之美</p>
+</header>
+
+<!-- 关于我 - 新增亮点卡片 -->
+<section class="section about">
+    <h2>关于我</h2>
+    <div class="about-content">
+        <div class="about-text">
+            <p>大家好！我叫<strong>任丽瑾</strong>，今年21岁，是一名<span style="color: #38b2ac; font-weight: 600;">数据科学与大数据技术</span>专业的大学生。</p>
+            <p>我对数据挖掘、机器学习和Web开发有着浓厚的兴趣，擅长使用Python进行数据分析与可视化，同时熟练掌握HTML网页制作和Office办公套件。在专业学习中，我注重理论与实践结合，积极参与数据建模相关项目。</p>
+            <p>课余时间，我喜欢阅读书籍、练习摄影与修图，偶尔也会约上朋友一起旅游或徒步，在新的风土人情中中放松身心，保持高效的学习状态。</p>
+            <span class="motto">"长青如松柏，唯尔是水源。"</span>
+        </div>
+        <div class="about-highlights">
+            <h3 style="font-size: 19px; color: #2d3748; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #f0f5f0;">个人亮点</h3>
+            <div class="highlight-item">
+                <span class="highlight-icon">📊</span>
+                <span>数据建模与分析能力</span>
+            </div>
+            <div class="highlight-item">
+                <span class="highlight-icon">💻</span>
+                <span>Python编程熟练应用</span>
+            </div>
+            <div class="highlight-item">
+                <span class="highlight-icon">🌐</span>
+                <span>Web前端基础扎实</span>
+            </div>
+            <div class="highlight-item">
+                <span class="highlight-icon">📚</span>
+                <span>持续学习新技术</span>
+            </div>
+            <div class="highlight-item">
+                <span class="highlight-icon">🤝</span>
+                <span>良好的团队协作意识</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 我的技能 - 优化列表样式 -->
+<section class="section skills">
+    <h2>我的技能</h2>
+    <ul class="skill-list">
+        <li>HTML 网页制作（语义化标签、响应式布局基础）</li>
+        <li>Python 编程（数据分析、机器学习入门、爬虫开发）</li>
+        <li>Office 办公软件（数据可视化、复杂表格处理、演示文稿设计）</li>
+        <li>摄影与修图（Lightroom调色、Photoshop后期处理）</li>
+        <li>数据处理工具（Pandas、NumPy、Matplotlib基础应用）</li>
+    </ul>
+</section>
+
+<!-- 我的学习计划 - 新增时间线效果 -->
+<section class="section plan">
+    <h2>我的学习计划</h2>
+    <ol class="plan-list">
+        <li>巩固 HTML/CSS 基础，深入学习响应式网页设计</li>
+        <li>系统学习 JavaScript 与前端框架（Vue/React）</li>
+        <li>进阶 Python 数据分析与机器学习算法</li>
+        <li>学习大数据处理技术（Hadoop、Spark 入门）</li>
+        <li>完成数据可视化类网站项目（个人作品集）</li>
+    </ol>
+</section>
+
+<!-- 我喜欢的网站 - 卡片式展示升级 -->
+<section class="section websites">
+    <h2>我喜欢的网站</h2>
+    <p style="font-size: 17px; color: #4a5568; margin-bottom: 20px;">以下是一些我经常访问的网站，涵盖学习、工具等多个领域：</p>
+    <div class="website-list">
+        <div class="website-card">
+            <a href="https://www.baidu.com" target="_blank">
+                <div class="website-icon">🔍</div>
+                <div class="website-title">百度 - 搜索引擎</div>
+                <div class="website-desc">快速获取各类信息，解决学习与生活问题，高效检索技术文档</div>
+            </a>
+        </div>
+        <div class="website-card">
+            <a href="https://www.bilibili.com" target="_blank">
+                <div class="website-icon">📺</div>
+                <div class="website-title">哔哩哔哩 - 学习视频</div>
+                <div class="website-desc">丰富的技术教程、大数据专业课程、公开课资源，学习形式生动</div>
+            </a>
+        </div>
+        <div class="website-card">
+            <a href="https://github.com" target="_blank">
+                <div class="website-icon">💻</div>
+                <div class="website-title">GitHub - 代码托管</div>
+                <div class="website-desc">查看开源数据项目，管理自己的代码仓库，与全球开发者交流技术</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 联系我 - 表格样式升级 -->
+<section class="section contact">
+    <h2>联系我</h2>
+    <table class="contact-table">
+        <tr>
+            <<th>联系方式</</th>
+            <<th>内容</</th>
+        </tr>
+        <tr>
+            <td>邮箱</td>
+            <td>renlijin@example.com</td>
+        </tr>
+        <tr>
+            <td>电话</td>
+            <td>138-0000-0000</td>
+        </tr>
+        <tr>
+            <td>地址</td>
+            <td>中国重庆市</td>
+        </tr>
+    </table>
+</section>
+
+<!-- 给我留言 - 表单交互优化 -->
+<section class="section message">
+    <h2>给我留言</h2>
+    <form>
+        <div class="form-group">
+            <label for="name">你的名字</label>
+            <input type="text" id="name" name="name" required placeholder="请输入你的姓名">
+        </div>
+        <div class="form-group">
+            <label for="email">你的邮箱</label>
+            <input type="email" id="email" name="email" required placeholder="请输入你的邮箱地址（便于回复）">
+        </div>
+        <div class="form-group">
+            <label for="message">留言内容</label>
+            <textarea id="message" name="message" required placeholder="请输入你想对我说的话、合作咨询或技术交流内容..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">
+            <span class="submit-icon">✈️</span>
+            提交留言
+        </button>
+    </form>
+</section>
+
+<!-- 页脚 - 质感升级 -->
+<footer class="footer">
+    <div class="footer-copyright">版权所有 © 2025 任丽瑾</div>
+    <div class="footer-update">最后更新：2025年1月 | 数据科学与大数据技术专业</div>
+</footer>
+</body>
+</html>
